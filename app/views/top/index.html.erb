@@ -19,11 +19,13 @@ SNSで感想を投稿するのは構わないけどいいねとかで評価さ�
 <br>
 
 <button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
-新規会員登録
+<%= link_to '新規会員登録', new_user_registration_path %>
 </button>
+
+
 
 <button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
-ログイン
+<%= link_to 'ログイン', 'パス' %>
 </button>
 
-新規会員登録とログインはボタン押しても遷移しないから注意
+新規会員登録は画面遷移するようになった。ログインはボタン押しても遷移しないから注意
