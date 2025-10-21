@@ -37,10 +37,10 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "devise"
-gem 'bundler-audit', require: false
+gem "bundler-audit", require: false
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
