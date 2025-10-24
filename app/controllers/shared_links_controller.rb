@@ -1,0 +1,2 @@
+class SharedLinksController < ApplicationController
+end

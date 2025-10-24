@@ -9,6 +9,6 @@ class CreatePlaces < ActiveRecord::Migration[7.2]
     end
     add_index :places, :name
     add_index :places, :location
-    add_index :places, [:location, :name]
+    add_index :places, [ :location, :name ]
   end
 end

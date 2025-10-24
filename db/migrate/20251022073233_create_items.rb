@@ -9,6 +9,6 @@ class CreateItems < ActiveRecord::Migration[7.2]
       t.timestamps
     end
     add_index :items, :name
-    add_index :items, [:travel_record_id, :created_at]
+    add_index :items, [ :travel_record_id, :created_at ]
   end
 end

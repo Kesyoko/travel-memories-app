@@ -1,0 +1,2 @@
+class SharedComment < ApplicationRecord
+end

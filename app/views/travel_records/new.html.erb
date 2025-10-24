@@ -1,0 +1,32 @@
+<h1 class="text-4xl font-bold">仮旅記録新規作成ページ</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <%= form_with model: @travel_record, class: "new_travel_record" do |f| %>
+       <div class="mb-4">
+  <%= f.label :title, "タイトル", class: "block font-medium text-gray-700" %>
+<br>
+  <%= f.text_field :title, class: "入力欄用クラス" %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :memo, "メモ" %><br>
+        <%= f.text_area :memo, class: "" %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :travel_date, "旅行日" %><br>
+        <%= f.date_select :travel_date %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :want_to_visit_again, "また行きたい？" %><br>
+        <%= f.select :want_to_visit_again, [["行きたい", true], ["うーん", false]] %>
+      </div>
+
+<%= f.submit "保存する", class: "relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110" %>
+      <% end %>
+    </div>
+  </div>
+</div>
