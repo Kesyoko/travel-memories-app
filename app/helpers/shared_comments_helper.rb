@@ -1,0 +1,2 @@
+module SharedCommentsHelper
+end

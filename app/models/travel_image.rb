@@ -1,0 +1,2 @@
+class TravelImage < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class TravelImagesController < ApplicationController
+end

@@ -22,6 +22,9 @@ SNSで感想を投稿するのは構わないけどいいねとかで評価さ�
 <button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
 <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
 </button>
+<button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
+<%= link_to '旅記録へ',  travel_records_path %>
+</button>
 <% else %>
 <button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
 <%= link_to '新規会員登録', new_user_registration_path %>
