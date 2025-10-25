@@ -13,6 +13,12 @@ class TravelRecordsController < ApplicationController
     redirect_to travel_records_path
   end
 
+  def destroy
+    @travel_record = TravelRecord.find(params[:id])
+    @travel_record.destroy
+    redirect_to travel_records_path
+  end
+
   private
   def travel_record_params
     params.require(:travel_record).permit(:title, :memo, :travel_date, :want_to_visit_again)
