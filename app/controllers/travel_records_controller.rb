@@ -6,7 +6,7 @@ class TravelRecordsController < ApplicationController
   def show
     @travel_record =TravelRecord.find(params[:id])
   end
-  
+
   def new
     @travel_record = TravelRecord.new
   end
