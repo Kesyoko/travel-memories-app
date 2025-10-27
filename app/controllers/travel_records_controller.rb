@@ -3,18 +3,38 @@ class TravelRecordsController < ApplicationController
     @travel_records = TravelRecord.includes(:user)
   end
 
+  def show
+    @travel_record =TravelRecord.find(params[:id])
+  end
+
   def new
     @travel_record = TravelRecord.new
   end
 
   def create
     @travel_record = current_user.travel_records.build(travel_record_params)
-    @travel_record.save
-    redirect_to travel_records_path
+    if @travel_record.save
+      redirect_to travel_records_path
+    else
+    render :new
+    end
+  end
+
+  def edit
+    @travel_record = current_user.travel_records.find(params[:id])
+  end
+
+  def update
+    @travel_record = current_user.travel_records.find(params[:id])
+    if @travel_record.update(travel_record_params)
+      redirect_to travel_records_path
+    else
+    render :edit
+    end
   end
 
   def destroy
-    @travel_record = TravelRecord.find(params[:id])
+    @travel_record = current_user.travel_records.find(params[:id])
     @travel_record.destroy
     redirect_to travel_records_path
   end
