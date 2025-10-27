@@ -1,0 +1,25 @@
+<h1 class="text-4xl font-bold">仮旅記録詳細ページ</h1>
+<div>
+  <h1><%= @travel_record.title %></h1>
+  <div>
+    <h2>メモ</h2>
+    <p><%= @travel_record.memo %></p>
+    <h2>訪れた日</h2>
+    <p><%= @travel_record.travel_date %></p>
+    <h2>また行きたいか（ture=行きたい）</h2>
+    <p><%= @travel_record.want_to_visit_again %></p>
+    
+    <%= link_to '編集', edit_travel_record_path(@travel_record), 
+    class: "relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110" %>
+    
+    <button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
+    <p><%= link_to '戻る',  travel_records_path %></p>
+    </button>
+
+    <%= link_to '記録削除', travel_record_path(@travel_record), 
+    data: { turbo_method: :delete,turbo_confirm: "削除しますか？" },
+    class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+
+  </div>
+</div>
+
