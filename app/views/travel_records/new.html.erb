@@ -24,8 +24,13 @@
         <%= f.label :want_to_visit_again, "また行きたい？" %><br>
         <%= f.select :want_to_visit_again, [["行きたい", true], ["うーん", false]] %>
       </div>
+      
+      <div class="my-4">
+      <%= f.label :travel_images,"写真"%><br>
+      <%= f.file_field :travel_images,multiple: true,accept: "image/*"%>
 
-<%= f.submit "保存する", class: "relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110" %>
+      <%= f.submit "保存する",
+      class: "relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110" %>
       <% end %>
     </div>
   </div>
