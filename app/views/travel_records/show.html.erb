@@ -1,31 +1,53 @@
-<h1 class="text-4xl font-bold">仮旅記録詳細ページ</h1>
-<div>
-  <h1><%= @travel_record.title %></h1>
-  <div>
-    <h2>メモ</h2>
-    <p><%= @travel_record.memo %></p>
-    <h2>訪れた日</h2>
-    <p><%= @travel_record.travel_date %></p>
-    <h2>また行きたいか（ture=行きたい）</h2>
-    <p><%= @travel_record.want_to_visit_again %></p>
+<h1 class="text-4xl font-bold mb-6 text-center">仮旅記録 詳細ページ</h1>
+
+<div class="max-w-3xl mx-auto px-4 py-6 bg-white shadow rounded space-y-6">
+
+  <h2 class="text-2xl font-semibold border-b pb-2 text-gray-800"><%= @travel_record.title %></h2>
+
+  <div class="space-y-4">
+    <div>
+      <h3 class="text-lg font-medium text-gray-700">場所</h3>
+      <p class="text-base text-gray-900"><%= @travel_record.place_name %></p>
+    </div>
+
+    <div>
+      <h3 class="text-lg font-medium text-gray-700">メモ</h3>
+      <p class="text-base text-gray-900 whitespace-pre-line"><%= @travel_record.memo %></p>
+    </div>
+
+    <div>
+      <h3 class="text-lg font-medium text-gray-700">訪れた日</h3>
+      <p class="text-base text-gray-900"><%= @travel_record.travel_date %></p>
+    </div>
+
+    <div>
+      <h3 class="text-lg font-medium text-gray-700">また行きたい？</h3>
+      <p class="text-base text-gray-900">
+        <%= @travel_record.want_to_visit_again ? "行きたい！" : "うーん…" %>
+      </p>
+    </div>
 
     <% if @travel_record.travel_images.attached? %>
-      <% @travel_record.travel_images.each do |image| %>
-        <p><%= image_tag image %></p>
-      <% end %>
-    <% end %> 
+      <div>
+        <h3 class="text-lg font-medium text-gray-700">写真</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <% @travel_record.travel_images.each do |image| %>
+            <%= image_tag image, class: "w-64 h-auto rounded shadow" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
 
-    <%= link_to '編集', edit_travel_record_path(@travel_record), 
-    class: "relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110" %>
-    
-    <button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
-    <p><%= link_to '戻る',  travel_records_path %></p>
-    </button>
+    <div class="flex flex-wrap gap-4 pt-6">
+      <%= link_to '編集する', edit_travel_record_path(@travel_record),
+        class: "rounded-md bg-neutral-950 px-5 py-2.5 text-white hover:bg-neutral-800 transition-all duration-300" %>
 
-    <%= link_to '記録削除', travel_record_path(@travel_record), 
-    data: { turbo_method: :delete,turbo_confirm: "削除しますか？" },
-    class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= link_to '← 戻る', travel_records_path,
+        class: "rounded-md bg-gray-500 px-5 py-2.5 text-white hover:bg-gray-700 transition-all duration-300" %>
 
+      <%= link_to '記録削除', travel_record_path(@travel_record),
+        data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+        class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-all duration-300" %>
+    </div>
   </div>
 </div>
-
