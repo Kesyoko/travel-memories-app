@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_27_070913) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_30_052431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -118,6 +118,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_27_070913) do
     t.boolean "want_to_visit_again", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "place_name"
     t.index ["travel_date"], name: "index_travel_records_on_travel_date"
     t.index ["user_id", "travel_date"], name: "index_travel_records_on_user_id_and_travel_date"
     t.index ["user_id", "want_to_visit_again"], name: "index_travel_records_on_user_id_and_want_to_visit_again"

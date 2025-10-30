@@ -1,7 +1,8 @@
 class TravelRecord < ApplicationRecord
   belongs_to :user, optional: true
   has_many_attached :travel_images
-  # accepts_nested_attributes_for:travel_images,allow_destroy: true
+  has_many :travel_places, dependent: :destroy
+  has_many :places, through: :travel_places
 
   validates :memo, length: { maximum: 500 }
   validates :title, presence: true, length: { maximum: 100 }

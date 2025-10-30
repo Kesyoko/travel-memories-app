@@ -1,20 +1,27 @@
-<h1 class="text-4xl font-bold">仮旅記録一覧ページ</h1>
+<h1 class="text-4xl font-bold mb-6">仮旅記録一覧ページ</h1>
 
-<%= link_to '記録作成', new_travel_record_path, 
-    class: "relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110" %>
+<div class="mb-6">
+  <%= link_to '記録作成', new_travel_record_path,
+    class: "rounded-md bg-neutral-950 px-5 py-2.5 text-white hover:bg-neutral-800 transition-all duration-300" %>
+</div>
 
-<% @travel_records.each do |record| %>
-  <h2 class="text-2xl font-bold mb-2"><%= record.travel_date %></h2>
-  <h2 class="text-2xl font-bold mb-2"><%= record.title %></h2>
+<div class="max-w-3xl mx-auto space-y-8">
+  <% @travel_records.each do |record| %>
+    <div class="p-6 border rounded-md shadow-sm space-y-4 bg-white">
+      <h2 class="text-2xl font-semibold text-gray-800"><%= record.title %></h2>
+      <p class="text-gray-600">旅行日: <%= record.travel_date %></p>
 
-  <%= link_to '見る', travel_record_path(record.id), 
-      class: "relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110" %>
+      <div class="flex gap-4 mt-4">
+        <%= link_to '見る', travel_record_path(record),
+          class: "rounded-md bg-neutral-950 px-4 py-2 text-white transition-all duration-300" %>
 
-  <%= link_to '編集', edit_travel_record_path(record.id), 
-      class: "relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110" %>
+        <%= link_to '編集', edit_travel_record_path(record),
+          class: "rounded-md bg-neutral-950 px-4 py-2 text-white transition-all duration-300" %>
 
-  <%= link_to '記録削除', travel_record_path(record.id), 
-      data: { turbo_method: :delete,turbo_confirm: "削除しますか？" },
-      class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
-  </div>
-<% end %>
+        <%= link_to '記録削除', travel_record_path(record),
+          data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+          class: "rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-700 transition-all duration-300" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -41,7 +41,7 @@ class TravelRecordsController < ApplicationController
 
   private
   def travel_record_params
-    params.require(:travel_record).permit(:title, :memo, :travel_date, :want_to_visit_again,
+    params.require(:travel_record).permit(:title, :memo, :travel_place, :travel_date, :want_to_visit_again, :place_name,
     travel_images: [])
   end
 end
