@@ -1,40 +1,39 @@
-<h1 class="text-4xl font-bold">仮トップページ</h1>
+<div class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
 
-<p class="mb-4">ここにアプリの説明を書く<br>
-<p class="mb-4">
-このアプリは旅行やお出かけをした際に尋ねた場所、買ったもの、使った金額や感想を写真と共に記録できる旅行記録特化型アプリです。<br>
-</p>
-<br>
-<p class="mb-4">
-例えば、SNSでは鍵をかけていてもフォローしている人にみられたくない。<br>
-SNSで感想を投稿するのは構わないけどいいねとかで評価されたくない・・<br>
-ネットで公開するのは嫌だから紙で作ったらどこにしまったかわからなくなった！<br>
-離れて住む家族と旅行に行った記録を一緒に見れたらいいと思うけど紙で作ったアルバムのやり取りがめんどう。。<br>
-スマホ操作が苦手な家族にもに見せたいけど、操作ができないからと自分のスマホを直に渡して写真見せるのはちょっと・・<br>
-そんな悩みが解決できるアプリになる予定です！！
-</p>
+  <h1 class="text-4xl font-bold text-center mb-6">トップページ</h1>
 
+  <p class="mb-4 leading-relaxed">
+    このアプリは旅行やお出かけをした際に尋ねた場所、買ったもの、使った金額や感想を
+    写真と共に記録できる旅行記録特化型アプリです。
+  </p>
 
-<br>
-<br>
+  <p class="mb-6 leading-relaxed">
+    例えば、SNSでは鍵をかけていてもフォローしている人にみられたくない。<br>
+    SNSで感想を投稿するのは構わないけどいいねとかで評価されたくない。<br>
+    ネットで公開するのは嫌だから紙で作ったらどこにしまったかわからなくなった！<br>
+    離れて住む家族と旅行に行った記録を一緒に見れたらいいと思うけど紙のアルバムのやり取りが面倒…。<br>
+    スマホ操作が苦手な家族に見せたいけど、自分のスマホを渡すのもちょっと…。<br>
+    そんな悩みが解決できるアプリになる予定です！！
+  </p>
 
-<% if user_signed_in? %>
-<button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
-<%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
-</button>
-<button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
-<%= link_to '旅記録へ',  travel_records_path %>
-</button>
-<% else %>
-<button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
-<%= link_to '新規会員登録', new_user_registration_path %>
-</button>
-<button class="relative overflow-hidden rounded-md bg-neutral-950 px-5 py-2.5 text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.175,0.885,0.32,1.275)] active:-translate-y-1 active:scale-x-90 active:scale-y-110">
-<%= link_to 'ログイン', new_user_session_path %>
-</button>
-<% end %>
-<br>
-会員登録→自動でログイン→ログアウトverのトップページ<br>
-ログアウト後にログインもできるがボタンでページの判断をするしかない<br>
-ログアウト後の画面があったらいいかもフラッシュメッセとか<br>
-新規会員登録,ログインの画面はトップページへ遷移できるボタンがあったらいいかも
+  <div class="flex flex-col gap-4 mt-8 items-center">
+    <% if user_signed_in? %>
+
+      <%= link_to 'ログアウト', destroy_user_session_path,
+        data: { turbo_method: :delete },
+        class: "w-full max-w-xs text-center py-2.5 px-4 bg-neutral-900 text-white rounded-md shadow transition active:scale-95 hover:bg-neutral-800" %>
+
+      <%= link_to '旅記録へ', travel_records_path,
+        class: "w-full max-w-xs text-center py-2.5 px-4 bg-neutral-900 text-white rounded-md shadow transition active:scale-95 hover:bg-neutral-800" %>
+
+    <% else %>
+
+      <%= link_to '新規会員登録', new_user_registration_path,
+        class: "w-full max-w-xs text-center py-2.5 px-4 bg-blue-600 text-white rounded-md shadow transition active:scale-95 hover:bg-blue-700" %>
+
+      <%= link_to 'ログイン', new_user_session_path,
+        class: "w-full max-w-xs text-center py-2.5 px-4 bg-green-600 text-white rounded-md shadow transition active:scale-95 hover:bg-green-700" %>
+
+    <% end %>
+  </div>
+</div>
