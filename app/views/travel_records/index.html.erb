@@ -1,27 +1,31 @@
-<h1 class="text-4xl font-bold mb-6">旅記録一覧</h1>
+<h1 class="text-4xl font-bold mb-8 text-center font-moji">旅記録一覧</h1>
 
-<div class="mb-6">
+<div class="mb-8 flex justify-center ">
   <%= link_to '記録作成', new_travel_record_path,
-    class: "rounded-md bg-neutral-950 px-5 py-2.5 text-white hover:bg-neutral-800 transition-all duration-300" %>
+    class: "rounded-md bg-blue-600 px-6 py-2.5 text-siro font-semibold shadow font-moji
+            hover:bg-blue-700 active:scale-95 transition-all duration-300" %>
 </div>
 
-<div class="max-w-3xl mx-auto space-y-8">
-  <% @travel_records.each do |record| %>
-    <div class="p-6 border rounded-md shadow-sm space-y-4 bg-white">
-      <h2 class="text-2xl font-semibold text-gray-800"><%= record.title %></h2>
-      <p class="text-gray-600">旅行日: <%= record.travel_date %></p>
+<% @day_group.sort.reverse.each do |day, records| %>
+  <div class="max-w-3xl mx-auto space-y-8 font-moji">
+    <h2 class="text-xl font-bold mb-4 border-b border-gray-300 pb-1"> <%= day %></h2>
+    <% records.each do |record| %>
+      <div class="p-6 border rounded-lg shadow bg-white font-moji hover:shadow-md transition">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-2"><%= record.title %></h2>
+        <p class="text-gray-600 mb-4">旅行日: <%= record.travel_date %></p>
 
-      <div class="flex gap-4 mt-4">
-        <%= link_to '見る', travel_record_path(record),
-          class: "rounded-md bg-neutral-950 px-4 py-2 text-white transition-all duration-300" %>
+        <div class="flex gap-4">
+          <%= link_to '見る', travel_record_path(record),
+            class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow hover:bg-neutral-800 active:scale-95 transition-all duration-300" %>
 
-        <%= link_to '編集', edit_travel_record_path(record),
-          class: "rounded-md bg-neutral-950 px-4 py-2 text-white transition-all duration-300" %>
+          <%= link_to '編集', edit_travel_record_path(record),
+            class: "rounded-md bg-green-600 px-4 py-2 text-siro shadow hover:bg-green-700 active:scale-95 transition-all duration-300" %>
 
-        <%= link_to '記録削除', travel_record_path(record),
-          data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
-          class: "rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-700 transition-all duration-300" %>
+          <%= link_to '記録削除', travel_record_path(record),
+            data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+            class: "rounded-md bg-red-600 px-4 py-2 text-siro shadow hover:bg-red-700 active:scale-95 transition-all duration-300" %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>

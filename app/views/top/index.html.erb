@@ -1,13 +1,13 @@
 <div class="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
 
-  <h1 class="text-4xl font-bold text-center mb-6">トップページ</h1>
+  <h1 class="text-4xl font-bold text-center mb-6 font-moji">このアプリについて</h1>
 
-  <p class="mb-4 leading-relaxed">
+  <p class="mb-4 leading-relaxed font-moji">
     このアプリは旅行やお出かけをした際に尋ねた場所、買ったもの、使った金額や感想を
     写真と共に記録できる旅行記録特化型アプリです。
   </p>
 
-  <p class="mb-6 leading-relaxed">
+  <p class="mb-6 leading-relaxed font-moji ">
     例えば、SNSでは鍵をかけていてもフォローしている人にみられたくない。<br>
     SNSで感想を投稿するのは構わないけどいいねとかで評価されたくない。<br>
     ネットで公開するのは嫌だから紙で作ったらどこにしまったかわからなくなった！<br>
@@ -16,7 +16,7 @@
     そんな悩みが解決できるアプリになる予定です！！
   </p>
 
-  <div class="flex flex-col gap-4 mt-8 items-center">
+  <div class="flex flex-col gap-4 mt-8 items-center font-moji">
     <% if user_signed_in? %>
 
       <%= link_to 'ログアウト', destroy_user_session_path,
