@@ -1,7 +1,7 @@
 class TravelRecordsController < ApplicationController
   def index
-   # @travel_records = current_user.travel_records
-    @day_group = current_user.travel_records.order(travel_date:"DESC").group_by(&:travel_date)
+    # @travel_records = current_user.travel_records
+    @day_group = current_user.travel_records.order(travel_date: "DESC").group_by(&:travel_date)
   end
 
   def show
