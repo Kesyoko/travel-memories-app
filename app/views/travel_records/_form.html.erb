@@ -2,44 +2,44 @@
   <%= form_with model: @travel_record, class: "space-y-6" do |f| %>
 
     <div>
-      <%= f.label :title, "タイトル", class: "block text-lg font-medium text-gray-700 mb-1" %>
+      <%= f.label :title, "タイトル", class: "block text-lg font-moji text-gray-700 mb-1" %>
       <%= f.text_field :title, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
     </div>
 
     <div>
-      <%= f.label :place_name, "場所名", class: "block text-lg font-medium text-gray-700 mb-1" %>
+      <%= f.label :place_name, "場所名", class: "block text-lg font-moji text-gray-700 mb-1" %>
       <%= f.text_field :place_name, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
     </div>
 
     <div>
-      <%= f.label :address, "所在地", class: "block text-lg font-medium text-gray-700 mb-1" %>
+      <%= f.label :address, "所在地", class: "block text-lg font-moji text-gray-700 mb-1" %>
       <%= f.text_field :address, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
     </div>
 
     <div>
-      <%= f.label :memo, "メモ", class: "block text-lg font-medium text-gray-700 mb-1" %>
+      <%= f.label :memo, "メモ", class: "block text-lg font-moji text-gray-700 mb-1" %>
       <%= f.text_area :memo, rows: 4, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
     </div>
 
     <div>
-      <%= f.label :travel_date, "旅行日", class: "block text-lg font-medium text-gray-700 mb-1" %>
-      <%= f.date_select :travel_date, class: "w-full" %>
+      <%= f.label :travel_date, "旅行日", class: "block text-lg font-moji text-gray-700 mb-1" %>
+      <%= f.date_select :travel_date,use_month_numbers: true, class: "w-full"%>
     </div>
 
     <div>
-      <%= f.label :want_to_visit_again, "また行きたい？", class: "block text-lg font-medium text-gray-700 mb-1" %>
+      <%= f.label :want_to_visit_again, "また行きたい？", class: "block text-lg font-moji text-gray-700 mb-1" %>
       <%= f.select :want_to_visit_again, [["行きたい", true], ["うーん", false]],
-          {}, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
+          {}, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200 font-moji" %>
     </div>
 
     <div>
-      <%= f.label :travel_images, "写真", class: "block text-lg font-medium text-gray-700 mb-1" %>
+      <%= f.label :travel_images, "写真", class: "block text-lg font-moji text-gray-700 mb-1" %>
       <%= f.file_field :travel_images, multiple: true, accept: "image/*",
-          class: "w-full border border-gray-300 rounded-md px-3 py-2 bg-white shadow-sm" %>
+          class: "w-full border border-gray-300 rounded-md px-3 py-2 bg-white shadow-sm font-moji" %>
     </div>
 
     <div class="pt-4">
-      <%= f.submit "保存する", class: "w-full rounded-md bg-neutral-950 px-5 py-2.5 text-white font-semibold hover:bg-neutral-800 transition-all duration-300 active:scale-95" %>
+      <%= f.submit "保存する", class: "w-full rounded-md bg-neutral-950 px-5 py-2.5 text-siro font-semibold hover:bg-neutral-800 transition-all duration-300 active:scale-95 font-moji" %>
     </div>
 
   <% end %>

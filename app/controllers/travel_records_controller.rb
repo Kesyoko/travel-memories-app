@@ -1,6 +1,7 @@
 class TravelRecordsController < ApplicationController
   def index
-    @travel_records = TravelRecord.includes(:user)
+   # @travel_records = current_user.travel_records
+    @day_group = current_user.travel_records.order(travel_date:"DESC").group_by(&:travel_date)
   end
 
   def show
@@ -13,6 +14,7 @@ class TravelRecordsController < ApplicationController
 
   def create
     @travel_record = current_user.travel_records.build(travel_record_params)
+    @travel_record.user_id = current_user.id
     if @travel_record.save
       redirect_to travel_records_path
     else

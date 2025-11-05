@@ -1,1 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Zen+Kaku+Gothic+New&display=swap');
 @import "tailwindcss";
+@theme {
+  --color-midori: #71ab91;
+  --color-siro: #fcf8e8;
+  --font-moji: "Zen Kaku Gothic New",sans-serif;
+}

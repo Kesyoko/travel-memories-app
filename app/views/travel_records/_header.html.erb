@@ -1,0 +1,17 @@
+<header class="bg-midori shadow p-4 flex justify-between">
+  <h1 class="text-xl font-moji text-gray-900">記すたび</h1>
+  <nav class="space-x-4">
+    <% if user_signed_in? %>
+      <%= link_to "旅記録", travel_records_path, class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow font-moji
+                  hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+
+      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow font-moji
+                  hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+    <% else %>
+      <%= link_to "ログイン", new_user_session_path, class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow font-moji
+                  hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+      <%= link_to "新規登録", new_user_registration_path, class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow font-moji
+                  hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+    <% end %>
+  </nav>
+</header>

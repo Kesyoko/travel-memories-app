@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :devise_controller?
   # もしかしたらonly: [:index]?
   allow_browser versions: :modern
+  # 以下を入れることによりログイン後に相応しい移動先を自動で判断してくれる。 どのアプリにも基本必要
+  def after_sign_in_path_for(resource)
+    travel_records_path
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :email, :password ])
