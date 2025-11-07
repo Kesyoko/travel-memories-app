@@ -4,17 +4,17 @@
 
   <p class="mb-4 leading-relaxed font-moji">
     このアプリは旅行やお出かけをした際に尋ねた場所、買ったもの、使った金額や感想を
-    写真と共に記録できる旅行記録特化型アプリです。
+    写真と感想と共に記録できる旅行記録特化型アプリです。
   </p>
 
   <p class="mb-6 leading-relaxed font-moji ">
-    例えば、SNSでは鍵をかけていてもフォローしている人にみられたくない。<br>
-    SNSで感想を投稿するのは構わないけどいいねとかで評価されたくない。<br>
-    ネットで公開するのは嫌だから紙で作ったらどこにしまったかわからなくなった！<br>
-    離れて住む家族と旅行に行った記録を一緒に見れたらいいと思うけど紙のアルバムのやり取りが面倒…。<br>
-    スマホ操作が苦手な家族に見せたいけど、自分のスマホを渡すのもちょっと…。<br>
-    そんな悩みが解決できるアプリになる予定です！！
+    ・旅行に行った記録を残したいけれど、SNSに投稿は誰かに見られちゃうから嫌。<br>
+    ・SNSを使うのはいいけれど、いいね等で評価されたくない。<br>
+    ・紙で記録を残すのは写真印刷や手書きと手間がかかって大変！<br>
+    ・写真を撮影し、いざ見返そうと思ったら探すのに時間がかかる！<br>
   </p>
+
+  <p class= "text-center mb-6 font-moji">そんな悩みが解決できるアプリを開発中です。</p>
 
   <div class="flex flex-col gap-4 mt-8 items-center font-moji">
     <% if user_signed_in? %>
@@ -25,9 +25,7 @@
 
       <%= link_to '旅記録へ', travel_records_path,
         class: "w-full max-w-xs text-center py-2.5 px-4 bg-neutral-900 text-white rounded-md shadow transition active:scale-95 hover:bg-neutral-800" %>
-
     <% else %>
-
       <%= link_to '新規会員登録', new_user_registration_path,
         class: "w-full max-w-xs text-center py-2.5 px-4 bg-blue-600 text-white rounded-md shadow transition active:scale-95 hover:bg-blue-700" %>
 

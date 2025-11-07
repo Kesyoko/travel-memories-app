@@ -1,0 +1,37 @@
+<h1 class="text-4xl font-bold mb-8 text-center font-moji">
+  <%= params[:date] %> の記録一覧
+</h1>
+
+<div class="mb-8 flex justify-center ">
+  <%= link_to '一覧に戻る', travel_records_path,
+    class: "rounded-md bg-gray-600 px-6 py-2.5 text-white font-semibold shadow font-moji
+            hover:bg-gray-700 active:scale-95 transition-all duration-300" %>
+</div>
+
+<div class="max-w-3xl mx-auto space-y-8 font-moji">
+  <% @travel_records.sort.reverse.each do |record| %>
+    <div class="p-6 border rounded-lg shadow bg-white hover:shadow-md transition">
+
+      <h2 class="text-2xl font-semibold mb-2"><%= record.title %></h2>
+
+      <p class="text-gray-600 mb-1">訪れた場所：<%= record.place_name %></p>
+      <p class="text-gray-600 mb-1">所在地：<%= record.address %></p>
+      <p class="text-lg font-moji text-gray-600">メモ:</p>
+      <p class="text-base text-gray-900 whitespace-pre-line mb-1"><%= record.memo %></p>
+      
+
+      <% if record.travel_images.attached? %>
+        <%= image_tag record.travel_images.first, class: "rounded mb-4" %>
+      <% end %>
+
+      <div class="flex gap-4">
+        <%= link_to '編集', edit_travel_record_path(record),
+            class: "rounded-md bg-green-600 px-4 py-2 text-white shadow hover:bg-green-700 transition" %>
+
+        <%= link_to '削除', travel_record_path(record),
+            data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+            class: "rounded-md bg-red-600 px-4 py-2 text-white shadow hover:bg-red-700 transition" %>
+      </div>
+    </div>
+  <% end %>
+</div>

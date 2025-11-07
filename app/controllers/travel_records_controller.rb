@@ -1,7 +1,7 @@
 class TravelRecordsController < ApplicationController
   def index
-   # @travel_records = current_user.travel_records
-    @day_group = current_user.travel_records.order(travel_date:"DESC").group_by(&:travel_date)
+    # @travel_records = current_user.travel_records
+    @day_group = current_user.travel_records.order(travel_date: "DESC").group_by(&:travel_date)
   end
 
   def show
@@ -39,6 +39,10 @@ class TravelRecordsController < ApplicationController
     @travel_record = current_user.travel_records.find(params[:id])
     @travel_record.destroy
     redirect_to travel_records_path
+  end
+
+  def by_date
+    @travel_records = current_user.travel_records.where(travel_date: params[:date])
   end
 
   private
