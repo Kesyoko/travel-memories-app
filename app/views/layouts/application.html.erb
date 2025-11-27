@@ -18,12 +18,16 @@
     
   </head>
 
-  <body>
-    <body class="bg-gray-50 text-gray-800">
+  <body class=" flex flex-col min-h-screen">
     <%= render "travel_records/header" %>
 
-    <div class="pt-8">
+    <div class="flex-grow pt-8">
       <%= yield %>
     </div>
-  </body>
+  
+
+  <footer class="footer pt-4">
+   <%= render "travel_records/footer" %>
+  </footer>
+ </body>
 </html>

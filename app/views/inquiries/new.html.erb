@@ -1,0 +1,35 @@
+<div class="relative top-10 flex min-h-full flex-col justify-center px-6 lg:px-8 font-moji ">
+  <div class="sm:mx-auto sm:w-full">
+    <h2 class="text-center text-4xl font-bold">お問い合わせ</h2>
+  </div>
+
+  <%= form_with url: inquiries_path, method: :post do |f| %>
+    <div class="mt-10 sm:mx-auto sm:max-w-sm">
+
+      <div>
+        <%= f.label :name, "名前" %>
+        <div class="mt-2">
+          <%= text_field_tag :name, nil, required: true, placeholder: "田中太郎", class: "block w-full rounded-md bg-primary px-3 py-1.5  outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" %>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <%= f.label :email, "メールアドレス" %>
+        <div class="mt-2">
+          <%= email_field_tag :email, nil, required: true, placeholder: "mail@example.com", class: "block w-full rounded-md bg-primary px-3 py-1.5 text-base outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" %>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <%= f.label :inquiry, "お問い合わせ内容"%>
+        <div class="mt-2">
+          <%= text_area_tag :inquiry, nil, required: true, rows: 6, placeholder: "ご不明な点やご意見などございましたらお気軽にお問い合わせください。", class: "block w-full rounded-md bg-primary px-3 py-1.5 text-base outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600" %>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <%= f.submit "送信", class: "actions  flex w-full justify-center rounded-md bg-neutral-900 px-3 py-1.5 text-sm/6  text-siro shadow-sm hover:bg-teal-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-300"%>
+      </div>
+    </div>
+  <% end %>
+</div>
