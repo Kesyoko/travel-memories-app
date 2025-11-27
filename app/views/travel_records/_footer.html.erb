@@ -1,0 +1,12 @@
+<footer class="bg-midori shadow p-4 flex justify-between ">
+<h1 class="text-xl font-moji text-gray-900"></h1>
+<nav class="sticky top-0 space-x-4">
+    <%= link_to "お問い合わせ", new_inquiry_path, class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow font-moji
+                hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+    <%= link_to "プライバシーポリシー",  "#", data: { turbo_method: :delete }, class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow font-moji
+                hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+    <%= link_to "利用規約", "#", class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow font-moji
+                hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+  
+</nav>
+</footer>
