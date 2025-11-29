@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   get "/travel_records/by_date/:date", to: "travel_records#by_date", as: "travel_record_date"
-  get "terms_of_use", to: "terms_of_use#index"
+  get "terms", to: "terms_of_use#index"
+  get "privacy_policy", to: "privacy_policy#index"
 end
