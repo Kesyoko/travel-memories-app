@@ -1,0 +1,68 @@
+<h1 class="text-4xl font-bold mb-8 text-center font-moji">
+  <%= @record.travel_date %> の記録一覧
+</h1>
+
+<div class="max-w-3xl mx-auto space-y-10 font-moji ">
+
+  <% @shared_page.sort.reverse.each do |record| %>
+    <div class="px-4 py-6 bg-white shadow rounded space-y-6 border">
+
+      <h2 class="text-2xl font-semibold border-b pb-2 text-gray-800">
+        <%= record.title %>
+      </h2>
+
+      <div class="space-y-4">
+
+        <div>
+          <h3 class="text-lg text-gray-700">場所</h3>
+          <p class="text-base text-gray-900"><%= record.place_name %></p>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-gray-700">所在地</h3>
+          <p class="text-base text-gray-900"><%= record.address %></p>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-gray-700">メモ</h3>
+          <p class="text-base text-gray-900 ">
+            <%= record.memo %>
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-gray-700">訪れた日</h3>
+          <p class="text-base text-gray-900"><%= record.travel_date %></p>
+        </div>
+
+        <div>
+          <h3 class="text-lg text-gray-700">また行きたい？</h3>
+          <p class="text-base text-gray-900">
+            <%= record.want_to_visit_again ? "行きたい！" : "うーん..." %>
+          </p>
+        </div>
+
+        <% if record.travel_images.attached? %>
+          <div>
+            <h3 class="text-lg text-gray-700">写真</h3>
+            <div class="flex flex-wrap gap-4 mt-2">
+              <% record.travel_images.each do |image| %>
+                <%= image_tag image, class: "w-64 h-auto rounded shadow" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+<!-- トップへ戻る -->
+<div class="mt-10 flex justify-center">
+  <%= link_to "トップへ戻る", root_path,
+        class: "rounded-md bg-neutral-500 px-4 py-2 text-white font-semibold shadow font-moji
+                hover:bg-neutral-600 active:scale-95 transition-all duration-300" %>
+</div>
+
