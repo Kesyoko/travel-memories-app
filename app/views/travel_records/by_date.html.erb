@@ -2,29 +2,90 @@
   <%= params[:date] %> の記録一覧
 </h1>
 
-<div class="mb-8 flex justify-center ">
+<div class="max-w-3xl mx-auto px-4 py-6 bg-white shadow rounded space-y-4 font-moji">
+<!-- 背景にグレーを適用してポップアップ出てますよを演出 -->
+<dialog id="share-dialog" class="p-0 rounded-md">
+  <div id="backdrop"
+       class="fixed inset-0 bg-black/40 flex items-center justify-center">
+
+    <!-- モーダル(クリックしたらイベント発生するようonClickもつける) -->
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-lg font-moji p-6"
+         onclick="event.stopPropagation()">
+      <!-- ユーザーへのメッセージ -->
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">
+        このURLを共有したい人に送信してください
+      </h3>
+      <!-- URL表示ゾーン -->
+      <input id="share-url" type="text" readonly
+             value="<%= shearing_url(@shared_link.token) %>"
+             class="w-full border border-gray-300 rounded p-2 bg-gray-50 text-gray-700 mb-4">
+
+      <div class="flex justify-end gap-2">
+        <button onclick="copyUrl()"
+                class="bg-green-700 hover:bg-midori text-siro font-bold py-2 px-4 rounded font-moji">
+          URLをコピーする
+        </button>
+
+        <button onclick="closeDialog()"
+                class="bg-gray-400 hover:bg-gray-500 text-siro font-bold py-2 px-4 rounded font-moji">
+          閉じる
+        </button>
+      </div>
+
+    </div>
+  </div>
+</dialog>
+
+<div class="mb-8 flex justify-center flex gap-4 ">
+
+<button command="show-modal" commandfor="share-dialog"
+        class="bg-midori hover:bg-green-600 text-siro font-bold py-2 px-4 rounded font-moji">
+  記録共有
+</button>
+
   <%= link_to '一覧に戻る', travel_records_path,
-    class: "rounded-md bg-gray-600 px-6 py-2.5 text-white font-semibold shadow font-moji
-            hover:bg-gray-700 active:scale-95 transition-all duration-300" %>
-</div>
+    class: "rounded-md bg-gray-600 px-6 py-2.5 text-white  shadow font-moji
+            hover:bg-gray-700 active:scale-95 transition-all duration-300" %>   
+  </div>
 
-<div class="max-w-3xl mx-auto space-y-8 font-moji">
   <% @travel_records.sort.reverse.each do |record| %>
-    <div class="p-6 border rounded-lg shadow bg-white hover:shadow-md transition">
+    <div class="p-6 border rounded-lg shadow bg-white  transition space-y-4">
+      <h2 class="text-2xl  border-b pb-2 text-gray-800"><%= record.title %></h2>
 
-      <h2 class="text-2xl font-semibold mb-2"><%= record.title %></h2>
-
-      <p class="text-gray-600 mb-1">訪れた場所：<%= record.place_name %></p>
-      <p class="text-gray-600 mb-1">所在地：<%= record.address %></p>
-      <p class="text-lg font-moji text-gray-600">メモ:</p>
-      <p class="text-base text-gray-900 whitespace-pre-line mb-1"><%= record.memo %></p>
+      <div>
+        <h3 class="text-lg font-moji text-gray-700">場所</h3>
+        <p class="text-base text-gray-900"><%= record.place_name %></p>
+      </div>
       
+      <div>
+        <h3 class="text-lg font-moji text-gray-700">所在地</h3>
+        <p class="text-base text-gray-900"><%= record.address %></p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-moji text-gray-700">メモ</h3>
+        <p class="text-base text-gray-900 whitespace-pre-line"><%= record.memo %></p>
+      </div>
+
+      <div>
+      <h3 class="text-lg font-moji text-gray-700">また行きたい？</h3>
+      <p class="text-base text-gray-900">
+        <%= record.want_to_visit_again ? "行きたい！" : "うーん…" %>
+      </p>
+    </div>
 
       <% if record.travel_images.attached? %>
-        <%= image_tag record.travel_images.first, class: "rounded mb-4" %>
-      <% end %>
-
-      <div class="flex gap-4">
+      <div>
+        <h3 class="text-lg font-moji text-gray-700">写真</h3>
+        <div class="flex flex-wrap gap-4 mt-2">
+          <% record.travel_images.each do |image| %>
+            <%= image_tag image, class: "w-64 h-auto rounded shadow" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    
+      <div class="flex gap-4 font-moji">
         <%= link_to '編集', edit_travel_record_path(record),
             class: "rounded-md bg-green-600 px-4 py-2 text-white shadow hover:bg-green-700 transition" %>
 
@@ -35,3 +96,27 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  const dialog = document.getElementById('share-dialog');
+  const backdrop = document.getElementById('backdrop');
+
+  backdrop.addEventListener('click', () => {
+    dialog.close();
+  });
+
+  document.querySelector('[command="show-modal"]').addEventListener('click', () => {
+    dialog.showModal();
+  });
+
+  function closeDialog() {
+    dialog.close();
+  }
+
+  function copyUrl() {
+    const url = document.getElementById('share-url').value;
+    navigator.clipboard.writeText(url)
+      .then(() => alert('コピーしました'))
+      .catch(() => alert('コピーに失敗しました'));
+  }
+</script>
