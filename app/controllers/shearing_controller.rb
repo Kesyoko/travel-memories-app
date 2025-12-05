@@ -12,6 +12,8 @@ class ShearingController < ApplicationController
     @record = @shared.travel_record
     # 　日にちで絞り込み
     # @shared_page = TravelRecord.where(date: @record.travel_date.all_day)
-    @shared_page = TravelRecord.where(travel_date: @record.travel_date.all_day)
+    # @shared_page = TravelRecord.where(travel_date: @record.travel_date.all_day)
+    @shared_page = TravelRecord.where(travel_date: @record.travel_date,user_id: @record.user_id)
+
   end
 end
