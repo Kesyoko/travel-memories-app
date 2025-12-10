@@ -10,8 +10,8 @@ module ApplicationHelper
        canonical: request.original_url,
        separator: "|",
        icon: [
-         { href: image_url("1travel_logo"), sizes: "60x60" },
-         { href: image_url("1travel_logo"), rel: "app/assets/images/1travel_logo.png", sizes: "180x180", type: "image/png" }
+         { href: image_url("1travel_logo.png"), sizes: "60x60" },
+         { href: image_url("1travel_logo.png"), sizes: "180x180", type: "image/png" }
        ],
        og: {
          site_name: :site,
