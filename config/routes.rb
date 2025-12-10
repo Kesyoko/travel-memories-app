@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   get "/travel_records/by_date/:date", to: "travel_records#by_date", as: "travel_record_date"
   get "terms", to: "terms_of_use#index"
   get "privacy_policy", to: "privacy_policy#index"
-  # 記録シェア画面に遷移ボタン配置場所は日毎の記録画面が良さそう
+  # ○日一覧記録のところにボタン設置。以下のルーティングは共有を受けた人がアクセスするページ。
   get "/shearing/:token", to: "shearing#index", as: "shearing"
 end
