@@ -1,7 +1,7 @@
 <h1 class="text-4xl font-bold mb-8 text-center font-moji">
   <%= params[:date] %> の記録一覧
 </h1>
-
+<!-- 以下は公式を参考にしたもの -->
 <div class="max-w-3xl mx-auto px-4 py-6 bg-white shadow rounded space-y-4 font-moji">
 <!-- 背景にグレーを適用してポップアップ出てますよを演出 -->
 <dialog id="share-dialog" class="p-0 rounded-md">
@@ -56,7 +56,7 @@
         <h3 class="text-lg font-moji text-gray-700">場所</h3>
         <p class="text-base text-gray-900"><%= record.place_name %></p>
       </div>
-      
+
       <div>
         <h3 class="text-lg font-moji text-gray-700">所在地</h3>
         <p class="text-base text-gray-900"><%= record.address %></p>
@@ -84,7 +84,7 @@
         </div>
       </div>
     <% end %>
-    
+
       <div class="flex gap-4 font-moji">
         <%= link_to '編集', edit_travel_record_path(record),
             class: "rounded-md bg-green-600 px-4 py-2 text-white shadow hover:bg-green-700 transition" %>
@@ -104,7 +104,7 @@
   backdrop.addEventListener('click', () => {
     dialog.close();
   });
-
+  // 背景のグレーを押しても消えますよという挙動
   document.querySelector('[command="show-modal"]').addEventListener('click', () => {
     dialog.showModal();
   });
@@ -112,7 +112,7 @@
   function closeDialog() {
     dialog.close();
   }
-
+  // thenは上手く行った時、catchは失敗した時の処理
   function copyUrl() {
     const url = document.getElementById('share-url').value;
     navigator.clipboard.writeText(url)

@@ -42,12 +42,13 @@ class TravelRecordsController < ApplicationController
   end
 
   def by_date
-    # ログイン中のユーザーの指定日の全記録を取得
+    # ログイン中のユーザーの指定日(params)の全記録を取得
     @travel_records = current_user.travel_records.where(travel_date: params[:date])
     # 最初の記録を代表としトークン作成のため抽出
     @representative_date = @travel_records.first
-    # 上で取得した記録を元にリンクを取得、なければ作成
+    # 上で取得した記録を元にSharedLinksテーブルよりfind_or_create_byでリンクを取得、なければ作成。createだと毎度新しくトークンが生まれるので不使用。
     @shared_link = SharedLink.find_or_create_by(travel_record: @representative_date) do |link|
+      # SecureRandomモジュールを使ってトークン作成
       link.token = SecureRandom.uuid
     end
   end
