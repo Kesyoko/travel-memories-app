@@ -8,7 +8,7 @@ class TravelRecord < ApplicationRecord
   validates :title, presence: true, length: { maximum: 100 }
   validates :travel_date, presence: true
   validates :want_to_visit_again, inclusion: { in: [ true, false ] }
-  #交通手段の選択肢、ストロングパラメータにも記載
+  # 交通手段の選択肢、ストロングパラメータにも記載
   enum transportation: {
     car: 1,
     train: 2,
@@ -20,5 +20,4 @@ class TravelRecord < ApplicationRecord
     bicycle: 8,
     other: 9
   }
-  
 end
