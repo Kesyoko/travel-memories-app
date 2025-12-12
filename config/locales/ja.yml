@@ -1,0 +1,13 @@
+ja:
+  enums:
+    travel_record:
+      transportation:
+        car: "車"
+        train: "電車"
+        bus: "バス"
+        walk: "徒歩"
+        airplane: "飛行機"
+        motorcycle: "バイク・原付"
+        ferry: "フェリー"
+        bicycle: "自転車"
+        other: "その他"

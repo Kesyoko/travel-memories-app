@@ -33,6 +33,16 @@
     </div>
 
     <div>
+    <h3 class="text-lg font-moji text-gray-700">主な交通手段</h3>
+
+    <% TravelRecord.transportations.keys.each do |key| %>
+      <%= f.radio_button :transportation, key %>
+      <%= f.label "transportation_#{key}", t("enums.travel_record.transportation.#{key}"), 
+      class: "transportation_label font-moji" %>
+    <% end %>
+  </div>
+
+    <div>
       <%= f.label :travel_images, "写真", class: "block text-lg font-moji text-gray-700 mb-1" %>
       <%= f.file_field :travel_images, multiple: true, accept: "image/*",
           class: "w-full border border-gray-300 rounded-md px-3 py-2 bg-white shadow-sm font-moji" %>
