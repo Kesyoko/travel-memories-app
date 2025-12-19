@@ -8,14 +8,23 @@
 
     <div>
       <%= f.label :place_name, "訪れた場所", class: "block text-lg font-moji text-gray-700 mb-1" %>
-      <%= f.text_field :place_name, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
+      <%= f.text_field :place_name,id: "place_name", class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
     </div>
 
     <div>
       <%= f.label :address, "所在地", class: "block text-lg font-moji text-gray-700 mb-1" %>
-      <%= f.text_field :address, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
+      <%= f.text_field :address, id: "address", class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
     </div>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAPS_API_KEY'] %>&libraries=places"></script>
 
+   
+
+
+
+
+
+
+    
     <div>
       <%= f.label :memo, "メモ", class: "block text-lg font-moji text-gray-700 mb-1" %>
       <%= f.text_area :memo, rows: 4, class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200" %>
