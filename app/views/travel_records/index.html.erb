@@ -25,6 +25,9 @@
           travel_record_date_path(date: day),
           class: "rounded-md bg-neutral-500 px-4 py-2 text-siro shadow 
                   hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+      <%= link_to 'この日の持ち物',  travel_record_items_path(record),
+          class: "rounded-md bg-green-600 px-4 py-2 text-white shadow hover:bg-green-700 transition" %>
+
     </div>
 
     <div class="border-b border-gray-300 mb-4"></div>

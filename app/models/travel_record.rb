@@ -3,6 +3,8 @@ class TravelRecord < ApplicationRecord
   has_many_attached :travel_images
   has_many :travel_places, dependent: :destroy
   has_many :places, through: :travel_places
+  has_one :shared_link, dependent: :destroy
+  has_many :items, dependent: :destroy
 
   validates :memo, length: { maximum: 500 }
   validates :title, presence: true, length: { maximum: 100 }
