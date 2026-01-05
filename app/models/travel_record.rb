@@ -22,4 +22,18 @@ class TravelRecord < ApplicationRecord
     bicycle: 8,
     other: 9
   }
+
+  before_create :make_token
+
+  def to_param
+    url_token
+  end
+
+
+  # 「||=」でif,elseと同じ（もしトークンがなければ〜となる）
+  # url_tokenをランダムなものに変更する
+  private
+  def make_token
+    self.url_token ||= SecureRandom.urlsafe_base64
+  end
 end

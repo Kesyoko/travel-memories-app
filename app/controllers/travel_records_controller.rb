@@ -5,7 +5,7 @@ class TravelRecordsController < ApplicationController
   end
 
   def show
-    @travel_record =TravelRecord.find(params[:id])
+    @travel_record =TravelRecord.find_by!(url_token: params[:id])
   end
 
   def new
@@ -23,11 +23,11 @@ class TravelRecordsController < ApplicationController
   end
 
   def edit
-    @travel_record = current_user.travel_records.find(params[:id])
+    @travel_record = current_user.travel_records.find_by(url_token: params[:id])
   end
 
   def update
-    @travel_record = current_user.travel_records.find(params[:id])
+    @travel_record = current_user.travel_records.find_by(url_token: params[:id])
     if @travel_record.update(travel_record_params)
       redirect_to travel_records_path
     else
@@ -36,7 +36,7 @@ class TravelRecordsController < ApplicationController
   end
 
   def destroy
-    @travel_record = current_user.travel_records.find(params[:id])
+    @travel_record = current_user.travel_records.find_by(url_token: params[:id])
     @travel_record.destroy
     redirect_to travel_records_path
   end
@@ -56,6 +56,6 @@ class TravelRecordsController < ApplicationController
   private
   def travel_record_params
     params.require(:travel_record).permit(:title, :memo, :travel_place, :travel_date, :want_to_visit_again, :place_name, :address, :transportation,
-    travel_images: [],items:[])
+    travel_images: [], items: [])
   end
 end

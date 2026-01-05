@@ -1,10 +1,9 @@
 class ItemsController < ApplicationController
-  
-  #ログイン中ユーザーの記録を記録IDを用いて取得
-  before_action :travel_record 
+  # ログイン中ユーザーの記録を記録IDを用いて取得
+  before_action :travel_record
   def travel_record
-   # ネストしているため旅記録IDを取得
-    @travel_record = current_user.travel_records.find(params[:travel_record_id])
+    # ネストしているため旅記録IDを取得
+    @travel_record = current_user.travel_records.find_by(url_token: params[:travel_record_id])
   end
 
   def index
@@ -38,7 +37,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  
+
 
   def destroy
     @item = @travel_record.items.find(params[:id])
