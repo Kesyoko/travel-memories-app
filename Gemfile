@@ -66,5 +66,5 @@ group :test do
 end
 
 gem "meta-tags"
-gem 'google_places'
-gem 'dotenv-rails'
+gem "google_places"
+gem "dotenv-rails"

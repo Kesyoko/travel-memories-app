@@ -2,7 +2,7 @@ class FixTransportationDefaultAndNull < ActiveRecord::Migration[7.1]
   def up
     change_column_default :travel_records, :transportation, 9
 
-    
+
     execute <<~SQL
       UPDATE travel_records
       SET transportation = 9
