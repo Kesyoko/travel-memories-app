@@ -13,7 +13,6 @@
 <div class="max-w-3xl mx-auto space-y-12 font-moji">
 
   <% @day_group.sort.reverse.each do |day, records| %>
-    <% next if records.blank? %>
     <!-- representative(代表)に記録の最初を代入 -->
     <% representative = records.first %>
 
