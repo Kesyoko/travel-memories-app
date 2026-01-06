@@ -1,7 +1,9 @@
 class TravelRecordsController < ApplicationController
   def index
     # @travel_records = current_user.travel_records
-    @day_group = current_user.travel_records.order(travel_date: "DESC").group_by(&:travel_date)
+    # where.not(url_token: [nil, ""])でnilや空の時無視しろということ
+    @day_group = current_user.travel_records.where.not(url_token: [nil, ""])
+    .order(travel_date: "DESC").group_by(&:travel_date)
   end
 
   def show
