@@ -21,7 +21,7 @@
     <% next if records.blank? %>
     <!-- representative(代表)に記録の最初を代入 -->
     <% representative = records.first %>
-    
+    <% next if representative.blank? %>
     <div class="flex items-center justify-between mb-2">
     
       <!-- 日付 -->
