@@ -38,6 +38,12 @@
       </p>
     </div>
 
+    <div>
+    <h3 class="text-lg font-moji text-gray-700">使用金額</h3>
+    <p class="text-base text-gray-900 whitespace-pre-line"><%= @travel_record.amount_used %>円</p>
+  </div>
+
+
     <% if @travel_record.travel_images.attached? %>
       <div>
         <h3 class="text-lg font-moji text-gray-700">写真</h3>

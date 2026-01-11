@@ -23,12 +23,23 @@ class TravelRecord < ApplicationRecord
     other: 9
   }
 
+  # 検索対象とするカラム指定
+  #  %w　は配列を作成する。(["",""]を省略するために使用。)
+  def self.ransackable_attributes(auth_object = nil)
+    %w[place_name address title]
+  end
+  # アソシエーションがあるカラム指定
+  # 今回はログイン中の〜で絞っているためユーザー必須
+  def self.ransackable_associations(auth_object = nil)
+    %w[user]
+  end
+
+  
   before_create :make_token
 
   def to_param
     url_token
   end
-
 
   # 「||=」でif,elseと同じ（もしトークンがなければ〜となる）
   # url_tokenをランダムなものに変更する

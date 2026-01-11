@@ -68,3 +68,4 @@ end
 gem "meta-tags"
 gem "google_places"
 gem "dotenv-rails"
+gem 'ransack'

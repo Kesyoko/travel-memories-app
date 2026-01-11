@@ -1,0 +1,16 @@
+
+
+<%= search_form_for q, url: url, html: { class: "flex gap-2 items-center" } do |f| %>
+  
+  <div data-controller="autocomplete" data-autocomplete-url-value="<%= autocomplete_travel_records_path %>">
+  <!-- ↓ contで文字列のみ指定。-->
+  <%= f.text_field :place_name_or_address_or_title_cont, 
+    class: "w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-200 ",
+    placeholder: "検索ワード",   
+    data: { action: "input->autocomplete#search" }%>
+  <ul data-autocomplete-target="results" class="autocomplete-results"></ul>
+ </div>
+ 
+ <%= f.submit '検索', 
+      class: "px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" %>
+<% end %>
