@@ -1,0 +1,75 @@
+<h1 class="text-4xl font-bold mb-8 text-center font-moji">記録一覧</h1>
+
+<div class="mb-8 flex justify-center  font-moji">
+  <%= link_to '記録作成', new_travel_record_path,
+    class: "rounded-md bg-orange-400 px-6 py-2.5 text-siro font-semibold shadow font-moji
+            hover:bg-orange-500 active:scale-95 transition-all duration-300" %>
+  
+  
+  <%= render 'search', q: @q, url: travel_records_path %>
+
+</div>
+
+<% if @shared_link.present? %>
+  <%= link_to '記録共有', shearing_path(@shared_link.token), 
+      class: "bg-red-500 hover:bg-red-700 text-siro font-bold py-2 px-4 rounded font-moji" %>
+<% end %>
+<div class="max-w-3xl mx-auto space-y-12 font-moji">
+
+  <% @day_group.sort.reverse.each do |day, records| %>
+    <!-- ↓レコードが空なら次の処理は飛ばすため確認 -->
+    <% next if records.blank? %>
+    <!-- representative(代表)に記録の最初を代入 -->
+    <% representative = records.first %>
+    <% next if representative.blank? %>
+    <div class="flex items-center justify-between mb-2">
+    
+      <!-- 日付 -->
+      <span class="text-xl font-bold text-gray-900">
+        <%= day %>
+      </span>
+      <%= link_to "この日の記録を全て見る",
+          travel_record_date_path(date: day),
+          class: "rounded-md bg-neutral-500 px-4 py-2 text-siro shadow 
+                  hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
+
+      <%= link_to 'この日の持ち物', travel_record_items_path(representative),
+          class: "rounded-md bg-green-600 px-4 py-2 text-white shadow hover:bg-green-700 transition" %>
+
+    </div>
+
+    <div class="border-b border-gray-300 mb-4"></div>
+    <div class="p-6 border rounded-lg shadow bg-white hover:shadow-md transition">
+
+      <h3 class="text-2xl font-semibold text-gray-900 mb-3">
+        <%= representative.title %>
+      </h3>
+
+      <p class="text-gray-600 mb-3">
+        記録件数：<%= records.count %> 件
+      </p>
+
+      <div class="h-2"></div>
+
+      <div class="flex gap-4">
+        <%= link_to '見る', travel_record_path(representative),
+          class: "rounded-md bg-neutral-900 px-4 py-2 text-siro shadow hover:bg-neutral-800 
+                  active:scale-95 transition-all duration-300" %>
+
+        <%= link_to '編集', edit_travel_record_path(representative),
+          class: "rounded-md bg-green-600 px-4 py-2 text-siro shadow hover:bg-green-700 
+                  active:scale-95 transition-all duration-300" %>
+
+        <%= link_to '記録削除', travel_record_path(representative),
+          data: { turbo_method: :delete, turbo_confirm: '削除しますか？' },
+          class: "rounded-md bg-red-600 px-4 py-2 text-siro shadow hover:bg-red-700 
+                  active:scale-95 transition-all duration-300" %>
+      </div>
+
+    </div>
+
+  <% end %>
+
+</div>
+
+<!--インデックスに見るボタンいらないかも。全て見るから編集ができるから -->
