@@ -1,9 +1,13 @@
 <h1 class="text-4xl font-bold mb-8 text-center font-moji">記録一覧</h1>
 
-<div class="mb-8 flex justify-center">
+<div class="mb-8 flex justify-center  font-moji">
   <%= link_to '記録作成', new_travel_record_path,
-    class: "rounded-md bg-blue-600 px-6 py-2.5 text-siro font-semibold shadow font-moji
-            hover:bg-blue-700 active:scale-95 transition-all duration-300" %>
+    class: "rounded-md bg-orange-400 px-6 py-2.5 text-siro font-semibold shadow font-moji
+            hover:bg-orange-500 active:scale-95 transition-all duration-300" %>
+  
+  
+  <%= render 'search', q: @q, url: travel_records_path %>
+
 </div>
 
 <% if @shared_link.present? %>

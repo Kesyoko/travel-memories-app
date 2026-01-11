@@ -1,10 +1,12 @@
 class TravelRecordsController < ApplicationController
   def index
-    # @travel_records = current_user.travel_records
-    # where.not(url_token: [nil, ""])でnilや空の時無視しろということ
-    @day_group = current_user.travel_records.where.not(url_token: [nil, ""])
-    .order(travel_date: "DESC").group_by(&:travel_date)
-  end
+    @q = current_user.travel_records.ransack(params[:q])
+    @records = @q.result(distinct: true).includes(:user).order("created_at desc")
+    @day_group = @records.group_by(&:travel_date)
+    end
+
+  # page(params[:page])はページネーション 必要になったら.orderの前へつける
+
 
   def show
     @travel_record =TravelRecord.find_by!(url_token: params[:id])
@@ -55,9 +57,28 @@ class TravelRecordsController < ApplicationController
     end
   end
 
+  def autocomplete
+    # to_sで文字形に変更して.stripで頭とお尻の空白を無視
+    keyword = params[:q].to_s.strip
+    # 戻り値が空かどうか確認、空なら検索しない
+    return render json: [] if keyword.blank?
+  
+    # ログイン中ユーザの記録を検索
+    @q = current_user.travel_records.ransack(
+    # 検索対象は場所名・住所・タイトル
+      place_name_or_address_or_title_cont: keyword
+    )
+    # 戻り値を１０件表示、distinct: trueで重複を消す
+    @response = @q.result(distinct: true).limit(10)
+    # render jsonでタイトルデータを返す
+    render json: @response.select(:title).distinct
+  end
+
   private
   def travel_record_params
-    params.require(:travel_record).permit(:title, :memo, :travel_place, :travel_date, :want_to_visit_again, :place_name, :address, :transportation,
+    params.require(:travel_record).permit(:title, :memo, :travel_place, :travel_date, :want_to_visit_again, :place_name, :address, :transportation, :amount_used,
     travel_images: [], items: [])
   end
 end
+
+
