@@ -21,6 +21,7 @@
     <% next if records.blank? %>
     <!-- representative(代表)に記録の最初を代入 -->
     <% representative = records.first %>
+    <!-- ↓representativeが空かparamsが空か確認 -->
     <% next if representative.blank? || representative.to_param.blank? %>
     <div class="flex items-center justify-between mb-2">
     
@@ -32,7 +33,7 @@
           travel_record_date_path(date: day),
           class: "rounded-md bg-neutral-500 px-4 py-2 text-siro shadow 
                   hover:bg-teal-600 active:scale-95 transition-all duration-300" %>
-      
+      <!-- presentでカラでないこと確認 -->
       <% if representative.to_param.present? %>
       <%= link_to 'この日の持ち物', travel_record_items_path(representative),
           class: "rounded-md bg-green-600 px-4 py-2 text-white shadow hover:bg-green-700 transition" %>

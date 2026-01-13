@@ -65,7 +65,8 @@
     </div>
 
     <div class="pt-4">
-      <%= f.submit "保存する", class: "w-full rounded-md bg-neutral-950 px-5 py-2.5 text-siro font-semibold hover:bg-neutral-800 transition-all duration-300 active:scale-95 font-moji" %>
+      <%= f.submit "保存する",data: { action: "click->loading#show" },
+      class: "w-full rounded-md bg-neutral-950 px-5 py-2.5 text-siro font-semibold hover:bg-neutral-800 transition-all duration-300 active:scale-95 font-moji" %>
     </div>
 
   <% end %>
