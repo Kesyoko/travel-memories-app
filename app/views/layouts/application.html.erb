@@ -22,12 +22,14 @@
 
   <body class=" flex flex-col min-h-screen">
 
+  <%# ローディングアニメーション設定%>
   <div data-controller="loading">
   <div data-loading-target="anime" class="fixed inset-0 z-50 flex items-center justify-center bg-midori bg-opacity-40 hidden">
     <div class="h-[150px] w-[150px] flex items-center justify-center">
       <div class="loader"></div>
     </div>
   </div>
+  
     <%= render "travel_records/header" %>
 
     <div class="flex-grow pt-8">

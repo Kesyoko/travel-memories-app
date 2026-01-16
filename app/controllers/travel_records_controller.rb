@@ -62,10 +62,10 @@ class TravelRecordsController < ApplicationController
     keyword = params[:q].to_s.strip
     # 戻り値が空かどうか確認、空なら検索しない
     return render json: [] if keyword.blank?
-  
+
     # ログイン中ユーザの記録を検索
     @q = current_user.travel_records.ransack(
-    # 検索対象は場所名・住所・タイトル
+      # 検索対象は場所名・住所・タイトル
       place_name_or_address_or_title_cont: keyword
     )
     # 戻り値を１０件表示、distinct: trueで重複を消す
@@ -80,5 +80,3 @@ class TravelRecordsController < ApplicationController
     travel_images: [], items: [])
   end
 end
-
-

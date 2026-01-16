@@ -34,7 +34,7 @@ class TravelRecord < ApplicationRecord
     %w[user]
   end
 
-  
+
   before_create :make_token
 
   def to_param
