@@ -68,4 +68,10 @@ end
 gem "meta-tags"
 gem "google_places"
 gem "dotenv-rails"
-gem 'ransack'
+gem "ransack"
+
+# google login
+gem "omniauth"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-github"
+gem "omniauth-google-oauth2"

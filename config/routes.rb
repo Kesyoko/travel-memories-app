@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks"
+}
   root "top#index"
 
   resources :travel_records, only: %i[new create update destroy show index edit] do
@@ -11,7 +13,7 @@ Rails.application.routes.draw do
     # 関連テーブルを使用しどの記録に紐つく記録かわかるようにネスト
     resources :items
   end
-    
+
   resources :inquiries, only: %i[new create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
