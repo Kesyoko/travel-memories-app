@@ -272,6 +272,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
 
+  # ENVに入れたIDとsecretを参照するための記述
   config.omniauth :google_oauth2,
   ENV["GOOGLE_CLIENT_ID"],
   ENV["GOOGLE_CLIENT_SECRET"]

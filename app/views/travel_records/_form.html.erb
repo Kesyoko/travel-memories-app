@@ -64,11 +64,12 @@
           class: "w-full border border-gray-300 rounded-md px-3 py-2 bg-white shadow-sm font-moji" %>
     </div>
 
+    <%# data: { action: "click->loading#show" }でクリック時にアニメーションを再生%>
     <div class="pt-4">
-    <%# data: { action: "click->loading#show" }でクリック時にアニメーションを再生>
       <%= f.submit "保存する",data: { action: "click->loading#show" },
-      class: "w-full rounded-md bg-neutral-950 px-5 py-2.5 text-siro font-semibold hover:bg-neutral-800 transition-all duration-300 active:scale-95 font-moji" %>
+        class: "w-full rounded-md bg-neutral-950 px-5 py-2.5 text-siro font-semibold hover:bg-neutral-800 transition-all duration-300 active:scale-95 font-moji" %>
     </div>
 
+    
   <% end %>
 </div>

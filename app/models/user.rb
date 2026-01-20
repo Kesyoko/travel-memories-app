@@ -8,8 +8,10 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
+# authはOmniAuth が返す認証情報（今回はGoogleユーザー情報）
+# 呼び出し対象は自身（Userクラス）のためselfを使用
 def self.from_omniauth(auth)
+  # providerとuidが一致するユーザーを探す。doは初回グーグルログインの際に作成のため実行される
   find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
     user.email = auth.info.email
     user.password = Devise.friendly_token[0, 20]
