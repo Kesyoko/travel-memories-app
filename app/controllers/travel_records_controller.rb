@@ -19,10 +19,12 @@ class TravelRecordsController < ApplicationController
   def create
     @travel_record = current_user.travel_records.build(travel_record_params)
     @travel_record.user_id = current_user.id
+
     if @travel_record.save
-      redirect_to travel_records_path
+    attach_preprocessed_images(@travel_record)
+    redirect_to travel_records_path
     else
-    render :new
+    render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,10 +34,12 @@ class TravelRecordsController < ApplicationController
 
   def update
     @travel_record = current_user.travel_records.find_by(url_token: params[:id])
+
     if @travel_record.update(travel_record_params)
+      attach_preprocessed_images(@travel_record)
       redirect_to travel_records_path
     else
-    render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -77,6 +81,22 @@ class TravelRecordsController < ApplicationController
   private
   def travel_record_params
     params.require(:travel_record).permit(:title, :memo, :travel_place, :travel_date, :want_to_visit_again, :place_name, :address, :transportation, :amount_used,
-    travel_images: [], items: [])
+    items: [])
   end
+
+  def attach_preprocessed_images(travel_record)
+    return unless params[:travel_record][:travel_images].present?
+  
+    params[:travel_record][:travel_images].each do |uploaded_file|
+      next if uploaded_file.blank?
+      io = ImagePreprocessor.call(uploaded_file)
+  
+      travel_record.travel_images.attach(
+        io: io,
+        filename: "#{SecureRandom.uuid}.webp",
+        content_type: "image/webp"
+      )
+    end
+  end
+  
 end
