@@ -85,21 +85,30 @@
       </div>
 
       <% if record.travel_images.attached? %>
-      <div>
-        <h3 class="text-lg font-moji text-gray-700">写真</h3>
-        <div class="flex flex-wrap gap-4 mt-2">
-          <% record.travel_images.each do |image| %>
-            <%= image_tag image, class: "w-64 h-auto rounded shadow" %>
-          <% end %>
+        <div>
+          <h3 class="text-lg font-moji text-gray-700">写真</h3>
+
+          <div class="flex flex-wrap items-start gap-4 mt-2">
+            <% record.travel_images.each do |image| %>
+              <div class="w-64 flex flex-col gap-2">
+                <%= image_tag image, class: "w-64 h-auto rounded shadow" %>
+
+                <%= link_to '画像削除', travel_image_path(image),
+                  data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+                  class: "inline-flex self-start items-center justify-center rounded-md bg-red-600 px-3 py-1 text-sm text-white shadow hover:bg-red-700 transition" %>
+                
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+        
 
       <div class="flex gap-4 font-moji">
         <%= link_to '編集', edit_travel_record_path(record),
             class: "rounded-md bg-green-600 px-4 py-2 text-white shadow hover:bg-green-700 transition" %>
 
-        <%= link_to '削除', travel_record_path(record),
+        <%= link_to '記録削除', travel_record_path(record),
             data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
             class: "rounded-md bg-red-600 px-4 py-2 text-white shadow hover:bg-red-700 transition" %>
       </div>

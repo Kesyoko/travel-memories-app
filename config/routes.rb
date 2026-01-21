@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  resources :travel_images, only: %i[destroy]
   resources :inquiries, only: %i[new create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
