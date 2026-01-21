@@ -21,6 +21,7 @@ class TravelRecordsController < ApplicationController
     @travel_record.user_id = current_user.id
 
     if @travel_record.save
+    # attach_preprocessed_imagesで画像加工する
     attach_preprocessed_images(@travel_record)
     redirect_to travel_records_path
     else
@@ -36,6 +37,7 @@ class TravelRecordsController < ApplicationController
     @travel_record = current_user.travel_records.find_by(url_token: params[:id])
 
     if @travel_record.update(travel_record_params)
+      # attach_preprocessed_imagesで画像加工する
       attach_preprocessed_images(@travel_record)
       redirect_to travel_records_path
     else
@@ -84,13 +86,17 @@ class TravelRecordsController < ApplicationController
     items: [])
   end
 
+  # ここで受け取った画像をImagePreprocessorに渡して加工、再度ここへ返し保存
   def attach_preprocessed_images(travel_record)
+    # 画像が送られてなければ処理終了
     return unless params[:travel_record][:travel_images].present?
-  
     params[:travel_record][:travel_images].each do |uploaded_file|
+      # 　空ファイルがあればそれは無視（これがないとエラー）
       next if uploaded_file.blank?
+      # ”保存前に”加工してIOに変換(ImagePreprocessorで加工)
       io = ImagePreprocessor.call(uploaded_file)
-  
+
+      # 保存する時にファイル名をUUIDに変換し保存を行う
       travel_record.travel_images.attach(
         io: io,
         filename: "#{SecureRandom.uuid}.webp",
@@ -98,5 +104,4 @@ class TravelRecordsController < ApplicationController
       )
     end
   end
-  
 end

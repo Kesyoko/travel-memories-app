@@ -47,13 +47,20 @@
     <% if @travel_record.travel_images.attached? %>
       <div>
         <h3 class="text-lg font-moji text-gray-700">写真</h3>
+        
         <div class="flex flex-wrap gap-4 mt-2">
           <% @travel_record.travel_images.each do |image| %>
             <%= image_tag image, class: "w-64 h-auto rounded shadow" %>
-          <% end %>
+            
+            <%= link_to '画像削除', travel_image_path(image),
+            data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
+            class: "inline-flex self-start items-center justify-center rounded-md bg-red-600 px-3 py-1 text-sm text-white shadow hover:bg-red-700 transition" %>
+            <% end %>
         </div>
       </div>
     <% end %>
+
+    
 
     <div class="flex flex-wrap gap-4 pt-6">
       <%= link_to '編集する', edit_travel_record_path(@travel_record),
