@@ -1,6 +1,6 @@
 <h1 class="text-4xl font-bold mb-6 text-center font-moji">記録詳細ページ</h1>
 
-<div class="max-w-3xl mx-auto px-4 py-6 bg-white shadow rounded space-y-6 font-moji">
+<div class="max-w-3xl mx-auto  px-4 py-6 bg-white shadow rounded space-y-6 font-moji ">
 
   <h2 class="text-2xl font-semibold border-b pb-2 text-gray-800"><%= @travel_record.title %></h2>
 
@@ -40,8 +40,8 @@
 
     <div>
     <h3 class="text-lg font-moji text-gray-700">使用金額</h3>
-    <p class="text-base text-gray-900 whitespace-pre-line"><%= @travel_record.amount_used %>円</p>
-  </div>
+      <p class="text-base text-gray-900 whitespace-pre-line"><%= @travel_record.amount_used %>円</p>
+    </div>
 
 
     <% if @travel_record.travel_images.attached? %>
@@ -50,7 +50,7 @@
         
         <div class="flex flex-wrap gap-4 mt-2">
           <% @travel_record.travel_images.each do |image| %>
-            <%= image_tag image, class: "w-64 h-auto rounded shadow" %>
+            <%= image_tag image, class: "sm:w-64 w-40 h-auto rounded shadow" %>
             
             <%= link_to '画像削除', travel_image_path(image),
             data: { turbo_method: :delete, turbo_confirm: "削除しますか？" },
