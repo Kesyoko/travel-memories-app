@@ -78,3 +78,4 @@ gem "omniauth-github"
 gem "omniauth-google-oauth2"
 # 画像編集用（これの他にImageMagickを入れてる(Gemじゃない)）
 gem "mini_magick"
+gem "simplecov", require: false, group: :test
