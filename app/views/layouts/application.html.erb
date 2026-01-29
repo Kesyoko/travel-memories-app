@@ -19,6 +19,10 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <!-- グーグル住所オートコンプリート 参考記事ではビューに書いていたが新規登録や編集ページなどで扱うためこちらに記述 -->
+    <!-- scriptタグで何を使うか判断している -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['MAPS_API_KEY'] %>&libraries=places"></script>
   </head>
 
   <body class="min-h-screen flex flex-col">

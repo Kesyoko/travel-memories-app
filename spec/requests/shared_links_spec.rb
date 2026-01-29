@@ -1,6 +1,7 @@
   require 'rails_helper'
 
   RSpec.describe "SharedLinks", type: :request do
+    # 事前にデータを作っておく
     let(:user) { create(:user) }
     let(:travel_record) { create(:travel_record, user: user) }
     let(:shared_link) { create(:shared_link, travel_record: travel_record) }
