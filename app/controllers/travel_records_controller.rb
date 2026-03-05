@@ -1,11 +1,9 @@
 class TravelRecordsController < ApplicationController
   def index
     @q = current_user.travel_records.ransack(params[:q])
-    @records = @q.result(distinct: true).includes(:user).order("created_at desc")
+    @records = @q.result(distinct: true).includes(:user).page(params[:page]).per(8).order("created_at desc")
     @day_group = @records.group_by(&:travel_date)
     end
-
-  # page(params[:page])はページネーション 必要になったら.orderの前へつける
 
 
   def show
